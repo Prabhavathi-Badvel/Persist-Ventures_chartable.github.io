@@ -234,7 +234,7 @@
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <div class="logo-container">
             <img src="logo.webp" alt="PodNova Logo" class="logo">
             <h1 class="neon-resonance">PodNova</h1>
@@ -245,9 +245,85 @@
             <a href="analytics.html">Analytics</a>
             <a href="dashboard.html">Dashboard</a>
             <a href="signin.html">Login</a>
-            <button class="signup.html">Sign Up</button>
+            <a href="signup.html" class="signup-btn">Sign Up</a>
         </div>
     </nav>
+    
+    <style>
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #121212;
+            box-shadow: 0 2px 10px rgba(255, 0, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+    
+        /* Logo Section */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+    
+        /* Neon Glow Effect */
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #8A2BE2, 0 0 10px #FF00FF; }
+            50% { text-shadow: 0 0 10px #FF00FF, 0 0 20px #8A2BE2; }
+            100% { text-shadow: 0 0 5px #8A2BE2, 0 0 10px #FF00FF; }
+        }
+    
+        .neon-resonance {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            animation: glow 1.5s infinite alternate;
+        }
+    
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+    
+        .nav-links a {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+    
+        .nav-links a:hover {
+            color: #8A2BE2;
+        }
+    
+        /* Sign Up Button */
+        .signup-btn {
+            padding: 8px 16px;
+            background-color: #8A2BE2;
+            color: white;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+            text-decoration: none;
+        }
+    
+        .signup-btn:hover {
+            background-color: #FF00FF;
+        }
+    </style>
+    
 
     <section class="hero">
         <div class="lightning-icon">
