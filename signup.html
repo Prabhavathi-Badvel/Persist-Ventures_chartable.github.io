@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Added Tailwind for navbar styling -->
     <style>
         * {
             margin: 0;
@@ -15,7 +16,7 @@
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Ensure navbar stays on top */
             align-items: center;
             background-color: #1a1b26;
         }
@@ -27,6 +28,7 @@
             width: 100%;
             max-width: 400px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 80px; /* To prevent overlap with navbar */
         }
 
         .title {
@@ -136,16 +138,29 @@
     </style>
 </head>
 <body>
+
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg w-full fixed top-0 left-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <a th:href="@{/}" class="text-2xl font-bold text-purple-600">PodNova</a>
+                <div class="logo-container">
+                    <img src="logo.webp" alt="PodNova Logo" class="logo">
+                    <h1 class="neon-resonance">PodNova</h1>
+                </div>
+                <div class="nav-links flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-600">Home</a>
+                    <a href="discover.html" class="text-gray-700 hover:text-purple-600">Podcasts</a>
+                    <a href="analytics.html" class="text-gray-700 hover:text-purple-600">Analytics</a>
+                    <a href="dashboard.html" class="text-gray-700 hover:text-purple-600">Dashboard</a>
+                    <a href="signin.html" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                        Log In
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Signup Form -->
     <div class="signup-container">
         <button class="close-button">×</button>
         <h1 class="title">Create Account</h1>
@@ -175,5 +190,6 @@
             Already have an account? <a href="#" class="login-link">Login</a>
         </div>
     </div>
+
 </body>
 </html>

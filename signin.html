@@ -3,67 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Resonance</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <title>Sign In - PodNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1a1b26;
+        }
+
+        .signin-container {
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+        }
+
+        .title {
+            color: #d946ef;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: none;
+            background-color: #374151;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-field::placeholder {
+            color: #9ca3af;
+        }
+
+        .signin-button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(to right, #d946ef, #ec4899);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .signin-button:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
+
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg w-full fixed top-0 left-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <a th:href="@{/}" class="text-2xl font-bold text-purple-600">PodNova</a>
+                <div class="logo-container">
+                    <img src="logo.webp" alt="PodNova Logo" class="logo">
+                    <h1 class="neon-resonance">PodNova</h1>
+                </div>
+                <div class="nav-links flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-600">Home</a>
+                    <a href="discover.html" class="text-gray-700 hover:text-purple-600">Podcasts</a>
+                    <a href="analytics.html" class="text-gray-700 hover:text-purple-600">Analytics</a>
+                    <a href="dashboard.html" class="text-gray-700 hover:text-purple-600">Dashboard</a>
+                    <a href="signup.html" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                        Sign Up
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
-   <!-- Sign In Form -->
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-2xl">
-        <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-        </div>
-        <form class="mt-8 space-y-6" id="signInForm" th:action="@{/signin}" method="post">
-            <div class="rounded-md shadow-sm space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input id="username" name="username" type="text" required 
-                        class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input id="password" name="password" type="password" required 
-                        class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
-                </div>
+    <!-- Sign In Form -->
+    <div class="signin-container">
+        <h1 class="title">Sign In</h1>
+        
+        <form th:action="@{/signin}" method="post">
+            <input type="text" name="username" class="input-field" placeholder="Username" required>
+            <input type="password" name="password" class="input-field" placeholder="Password" required>
+            
+            <div class="flex justify-between items-center text-gray-400 text-sm mb-4">
+                <label class="flex items-center">
+                    <input type="checkbox" name="remember-me" class="mr-2">
+                    Remember me
+                </label>
+                <a href="#" class="text-purple-400 hover:underline">Forgot password?</a>
             </div>
 
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" 
-                        class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
-                </div>
-
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-purple-600 hover:text-purple-500">Forgot your password?</a>
-                </div>
-            </div>
-
-            <div>
-                <button type="submit" 
-                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    Sign in
-                </button>
-            </div>
+            <button type="submit" class="signin-button">Sign In</button>
         </form>
     </div>
-</div>
 
 </body>
 </html>
