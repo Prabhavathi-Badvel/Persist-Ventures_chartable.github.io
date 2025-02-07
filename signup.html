@@ -140,25 +140,70 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg w-full fixed top-0 left-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="logo-container">
-                    <img src="logo.webp" alt="PodNova Logo" class="logo">
-                    <h1 class="neon-resonance">PodNova</h1>
-                </div>
-                <div class="nav-links flex space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-purple-600">Home</a>
-                    <a href="discover.html" class="text-gray-700 hover:text-purple-600">Podcasts</a>
-                    <a href="analytics.html" class="text-gray-700 hover:text-purple-600">Analytics</a>
-                    <a href="dashboard.html" class="text-gray-700 hover:text-purple-600">Dashboard</a>
-                    <a href="signin.html" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-                        Log In
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<nav class="bg-black shadow-lg w-full fixed top-0 left-0 px-6 py-4 flex justify-between items-center">
+    <div class="logo-container flex items-center space-x-2">
+        <img src="logo.webp" alt="PodNova Logo" class="logo">
+        <h1 class="neon-resonance">PodNova</h1>
+    </div>
+    <div class="nav-links flex space-x-6">
+        <a href="index.html" class="text-gray-300 hover:text-accent-purple transition">Home</a>
+        <a href="discover.html" class="text-gray-300 hover:text-accent-purple transition">Podcasts</a>
+        <a href="analytics.html" class="text-gray-300 hover:text-accent-purple transition">Analytics</a>
+        <a href="dashboard.html" class="text-gray-300 hover:text-accent-purple transition">Dashboard</a>
+        <a href="signin.html"
+            class="px-4 py-2 bg-accent-purple text-white rounded-lg hover:bg-accent-pink transition">
+            Log In
+        </a>
+    </div>
+</nav>
+
+<style>
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 5px #8A2BE2, 0 0 10px #8A2BE2, 0 0 15px #FF00FF;
+        }
+        50% {
+            text-shadow: 0 0 10px #8A2BE2, 0 0 20px #FF00FF, 0 0 25px #8A2BE2;
+        }
+        100% {
+            text-shadow: 0 0 5px #8A2BE2, 0 0 10px #8A2BE2, 0 0 15px #FF00FF;
+        }
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 50px;
+        height: auto;
+    }
+
+    .neon-resonance {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: 'Orbitron', sans-serif;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    .nav-links a {
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .bg-accent-purple {
+        background-color: #8A2BE2;
+    }
+
+    .hover\:bg-accent-pink:hover {
+        background-color: #FF00FF;
+    }
+</style>
+
 
     <!-- Signup Form -->
     <div class="signup-container">
