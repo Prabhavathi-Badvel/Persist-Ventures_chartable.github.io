@@ -32,3 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
     
     displaySongs();
 });
+// Add event listener to the sign in form
+document.addEventListener('DOMContentLoaded', function() {
+    const signInForm = document.getElementById('signInForm');
+    if (signInForm) {
+        signInForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Here you would typically make an API call to your backend
+            console.log('Sign in attempt:', { username });
+            
+            // For development purposes, just log the attempt
+            alert('Sign in functionality will be implemented with backend integration');
+        });
+    }
+});

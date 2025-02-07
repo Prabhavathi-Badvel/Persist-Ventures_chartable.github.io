@@ -12,15 +12,26 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-   @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    @Bean
+//     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//         http
+//             .csrf().disable() // Disable CSRF for development
+//             .authorizeHttpRequests((auth) -> auth
+//                 .requestMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/api/**").permitAll() // Public access
+//                 .anyRequest().authenticated() // Secure other endpoints
+//             )
+//             .formLogin().disable(); // Disable default login form
+//         return http.build();
+//     }
+@Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable() // Disable CSRF for development
-            .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/api/**").permitAll() // Public access
-                .anyRequest().authenticated() // Secure other endpoints
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/index", "/signin", "/css/**", "/js/**","/**","/discover","/analytics").permitAll()
+                .anyRequest().authenticated()
             )
-            .formLogin().disable(); // Disable default login form
+            .csrf(csrf -> csrf.disable());
+        
         return http.build();
     }
 }

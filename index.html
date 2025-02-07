@@ -1,31 +1,198 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resonance Music</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Resonance - Podcast Analytics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 10;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
 
-<body>
-    <header>
-        <h1>Resonance</h1>
-        <input type="text" id="search" placeholder="Search for music...">
-    </header>
-    <main>
-        <div id="music-list"></div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Resonance Music. All rights reserved.</p>
-    </footer>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-2">
+                        <span class="text-xl font-bold">Chartable</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative nav-item">
+                        <button class="px-3 py-2 hover:text-gray-300">Podcasters</button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Audience Measurement
+                                Services</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Measurement Plans &
+                                Pricing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Podcast Promos + Link
+                                Attribution</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Monetize with Ads</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">More Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="px-3 py-2 hover:text-gray-300">Advertisers</button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Advertiser Planning
+                                Data</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Podcast Ad
+                                Attribution</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">More Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="px-3 py-2 hover:text-gray-300">Industry Data</button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Global Podcast
+                                Rankings</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Top Advertisers</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Market Trends</a>
+                        </div>
+                    </div>
+                    <a href="/dashboard" class="px-3 py-2 hover:text-gray-300">Dashboard</a>
+                    <a href="/signin" class="px-3 py-2 hover:text-gray-300">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- JavaScript Files -->
-    <script defer src="utils.js"></script>
-    <script defer src="prompts.js"></script>
-    <script defer src="app.js"></script>
-    <script defer src="index.js"></script>
+    <!-- Hero Section -->
+    <div class="relative hero-gradient min-h-screen flex items-center">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 opacity-90"></div>
+
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Image Section -->
+                <div class="flex justify-center md:order-2">
+                    <img src="/images/podcast.jpg" alt="Podcast Studio with Microphone"
+                        class="max-w-[800px] h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition duration-500" />
+
+
+                </div>
+
+                <!-- Text Section -->
+                <div class="text-white md:order-1 text-center md:text-left">
+                    <div class="flex justify-center md:justify-start mb-6 animate-bounce">
+                        <svg class="w-20 h-20 text-white drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                            <path
+                                d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                        </svg>
+                    </div>
+
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-lg animate-fade-in">
+                        WELCOME TO <span class="text-yellow-300">PODTRAC</span>
+                    </h1>
+
+                    <p class="text-xl mt-4 text-gray-200 drop-shadow-md">UNDERSTAND AND GROW YOUR PODCAST AUDIENCE</p>
+                    <p class="text-lg mt-2 text-gray-300 drop-shadow-md">WITH ANALYSIS, TOOLS, AND IAB CERTIFIED DATA
+                    </p>
+
+                    <!-- CTA Button -->
+                    <div class="mt-8">
+                        <a href="#" class="px-6 py-3 bg-yellow-400 text-gray-900 text-lg font-semibold rounded-full shadow-lg 
+                        hover:bg-yellow-300 hover:scale-105 transform transition duration-300">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">What Sets Us Apart</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-semibold mb-4">Unrivaled Insights</h3>
+                    <p class="text-gray-600">Leverage cutting-edge AI to understand your audience and grow smarter.</p>
+                </div>
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-semibold mb-4">Refined Visuals</h3>
+                    <p class="text-gray-600">Transform raw numbers into actionable visuals for faster decisions.</p>
+                </div>
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-semibold mb-4">Seamless Analytics</h3>
+                    <p class="text-gray-600">Tools designed to make podcast analytics effortless.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <p class="italic text-gray-600">"Resonance transformed how I understand my audience. Highly
+                        recommend!"</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <p class="italic text-gray-600">"Amazing insights! Resonance has been a game-changer for my
+                        podcast."</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <p class="italic text-gray-600">"Seamless analytics that makes understanding data effortless!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8">Join the Community</h2>
+            <p class="text-gray-600 mb-8">
+                Enter your email to join our growing community of podcasters and stay ahead with exclusive insights.
+            </p>
+            <div class="max-w-md mx-auto flex gap-4">
+                <input type="email" placeholder="Enter your email"
+                    class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <button class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-gray-600">Developed by Aryansh</p>
+                <p class="text-sm text-gray-600 mt-2">© 2024 Resonance. All rights reserved.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-800 mx-2">About</a>
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-800 mx-2">Contact</a>
+                    <a href="#" class="text-sm text-gray-600 hover:text-gray-800 mx-2">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
