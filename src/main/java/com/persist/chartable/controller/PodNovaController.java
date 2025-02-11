@@ -18,7 +18,7 @@ import com.persist.chartable.entity.PodNovaSignUpEntity;
 import com.persist.chartable.service.PodNovaService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class PodNovaController {
 
     @Autowired
