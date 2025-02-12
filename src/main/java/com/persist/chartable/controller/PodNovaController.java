@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,42 +16,46 @@ import com.persist.chartable.entity.PodNovaSignUpEntity;
 import com.persist.chartable.service.PodNovaService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class PodNovaController {
 
     @Autowired
-    PodNovaService podNovaService;
-    ResponsePodNovaLoginDto response = new ResponsePodNovaLoginDto();
+    private PodNovaService podNovaService;
 
     @PostMapping("/podcaster-register")
-    public ResponseEntity<?> create(@RequestBody PodNovaSignUpEntity request) {
-        ResponsePodNovaLoginDto rs = new ResponsePodNovaLoginDto();
-        Optional<PodNovaSignUpEntity> user = podNovaService.checkExistingUser(request.getEmail(),
-                request.getPassword());
-        if (user.isPresent()) {
-            if (user.get().getEmail().equals(request.getEmail())
-                    && user.get().getPassword().equals(request.getPassword())) {
-                rs.setMessage("Email already exists");
-                return new ResponseEntity<>(rs, HttpStatus.OK);
+    public ResponseEntity<ResponsePodNovaLoginDto> create(@RequestBody PodNovaSignUpEntity request) {
+        Optional<PodNovaSignUpEntity> existingUser = podNovaService.checkExistingUser(request.getEmail(), request.getPassword());
+        
+        if (existingUser.isPresent()) {
+            if (existingUser.get().getEmail().equals(request.getEmail()) &&
+                existingUser.get().getPassword().equals(request.getPassword())) {
+                
+                ResponsePodNovaLoginDto response = new ResponsePodNovaLoginDto();
+                response.setMessage("Email already exists");
+                response.setStatus(false);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
             }
         }
+
         PodNovaDto userDetails = podNovaService.addDetails(request);
-		response.setMessage("Thanks for registering with us. please sign in with registered email and password");
-		response.setStatus(true);
-		response.setUserData(userDetails);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+        ResponsePodNovaLoginDto response = new ResponsePodNovaLoginDto();
+        response.setMessage("Thanks for registering with us. Please sign in with your registered email and password.");
+        response.setStatus(true);
+        response.setUserData(userDetails);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/podcaster-login")
     public ResponseEntity<?> login(@RequestBody LoginRequest login) {
         try {
             ResponsePodNovaLoginDto response = podNovaService.loginDetails(login);
+
             if (response.getJwtToken() != null) {
-                return new ResponseEntity<>(response, HttpStatus.OK);
+                return ResponseEntity.ok(response);
             }
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.OK).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error during login: " + e.getMessage());
         }
     }
 }
