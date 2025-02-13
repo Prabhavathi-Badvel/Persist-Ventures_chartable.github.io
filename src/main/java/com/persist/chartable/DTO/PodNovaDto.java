@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class PodNovaDto {
 
-    public String podNovaId;
+    public Long podNovaId;
 	public String name;
 	public String email;
 	public String password;

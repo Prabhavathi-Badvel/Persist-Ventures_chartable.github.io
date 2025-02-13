@@ -17,12 +17,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "podcaster")
+
 public class PodNovaSignUpEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "POD_NOVA_ID")
-    public String podNovaId;
+    public Long podNovaId;
 
     @Column(name = "NAME")
     public String name;
