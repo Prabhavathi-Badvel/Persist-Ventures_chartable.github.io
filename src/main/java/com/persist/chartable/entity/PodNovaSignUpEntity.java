@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,9 @@ public class PodNovaSignUpEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "POD_NOVA_ID")
     public Long podNovaId;
+
+    // @Version
+    // private Long version;
 
     @Column(name = "NAME")
     public String name;
